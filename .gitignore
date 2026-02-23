@@ -6,3 +6,6 @@ venv/
 venv3/
 .venv/
 lab01/venv/
+# Private weekly labs moved out of wkXX
+lab/
+wk*/lab*/

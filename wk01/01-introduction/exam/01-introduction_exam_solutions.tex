@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\title{COMP3242 Week 1 Practice Exam (Solutions)}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Q1}
+\begin{enumerate}[label=(\alph*)]
+  \item Flattened shape: $(16, 3\cdot 32\cdot 32)=(16,3072)$.
+  \item For mapping $3072\to 100$: weight shape $(100,3072)$, bias shape $(100,)$. 
+  \item Output shape: $(16,100)$.
+\end{enumerate}
+
+\section*{Q2}
+\[
+Ax=\begin{bmatrix}1&2&0\\-1&3&4\end{bmatrix}
+\begin{bmatrix}2\\-1\\1\end{bmatrix}
+=\begin{bmatrix}2-2+0\\-2-3+4\end{bmatrix}
+=\begin{bmatrix}0\\-1\end{bmatrix},
+\quad
+y=Ax+b=\begin{bmatrix}0\\-1\end{bmatrix}+\begin{bmatrix}1\\-2\end{bmatrix}=\begin{bmatrix}1\\-3\end{bmatrix}.
+\]
+
+\section*{Q3}
+\begin{enumerate}[label=(\alph*)]
+  \item $u^Tv=1\cdot 3+(-2)\cdot 0+2\cdot(-1)=1$.
+  \item $\lVert u\rVert_2=\sqrt{1^2+(-2)^2+2^2}=\sqrt{9}=3$.
+\end{enumerate}
+
+\section*{Q4}
+PyTorch aligns trailing dimensions. $b\in\mathbb{R}^{4}$ is treated as shape $(1,4)$ and broadcast across the first dimension of $X\in\mathbb{R}^{8\times4}$. Therefore $X+b$ is valid and output shape is $(8,4)$.
+
+\section*{Q5}
+Bug: `CrossEntropyLoss` expects class indices of integer type (`torch.long`), not floating labels.
+
+Correct fix:
+\begin{verbatim}
+labels = labels.long()
+loss = torch.nn.CrossEntropyLoss()(logits, labels)
+\end{verbatim}
+
+\end{document}

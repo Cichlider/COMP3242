@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\title{COMP3242 Week 1 Practice Exam (Questions)}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Instructions}
+Answer all questions. Show key steps for computational questions.
+
+\section*{Q1: Tensor Shapes (Concept + Calculation)}
+A mini-batch of RGB images has shape $(B, C, H, W) = (16, 3, 32, 32)$.
+\begin{enumerate}[label=(\alph*)]
+  \item What is the shape after flattening each image to a vector?
+  \item A linear layer maps each flattened vector to 100 outputs. What is the weight matrix shape and bias shape?
+  \item What is the output batch shape?
+\end{enumerate}
+
+\section*{Q2: Matrix-Vector Multiplication}
+Let
+\[
+A=\begin{bmatrix}1&2&0\\-1&3&4\end{bmatrix},\quad x=\begin{bmatrix}2\\-1\\1\end{bmatrix},\quad b=\begin{bmatrix}1\\-2\end{bmatrix}.
+\]
+Compute $y=Ax+b$.
+
+\section*{Q3: Inner Product and Norm}
+Let $u=[1,-2,2]^T$ and $v=[3,0,-1]^T$.
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $u^Tv$.
+  \item Compute $\lVert u\rVert_2$.
+\end{enumerate}
+
+\section*{Q4: Broadcasting}
+Given tensors $X\in\mathbb{R}^{8\times 4}$ and $b\in\mathbb{R}^{4}$, explain why $X+b$ is valid in PyTorch and state the output shape.
+
+\section*{Q5: PyTorch Debugging}
+Consider the code:
+\begin{verbatim}
+logits = model(x)              # shape (32, 10)
+labels = labels.float()        # labels originally class indices
+loss = torch.nn.CrossEntropyLoss()(logits, labels)
+\end{verbatim}
+Identify the bug and provide a correct fix.
+
+\end{document}
