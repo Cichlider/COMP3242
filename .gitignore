@@ -1,11 +1,19 @@
 # macOS
 .DS_Store
 
+# Python cache
+__pycache__/
+*.pyc
+
 # Virtual environment
 venv/
 venv3/
 .venv/
-lab01/venv/
-# Private weekly labs moved out of wkXX
-lab/
+lab/**/venv/
+
+# Large local lab datasets
+lab/lab04/data/cifar-10-python.tar.gz
+lab/lab09/data/cifar-10-python.tar.gz
+
+# Weekly labs under wkXX stay ignored
 wk*/lab*/
