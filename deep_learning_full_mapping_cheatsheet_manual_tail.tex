@@ -1,0 +1,80 @@
+\section{21. 超短速查版}
+
+\subsection{核心公式}
+
+\subsubsection{Linear}
+\[
+y=Wx+b,\qquad
+\#\mathrm{params}=\mathrm{out}\cdot\mathrm{in}+\mathrm{out}
+\]
+
+\subsubsection{Softmax}
+\[
+p_i=\frac{e^{z_i}}{\sum_j e^{z_j}},\qquad
+\mathrm{softmax}(z)=\mathrm{softmax}(z+c\mathbf 1)
+\]
+
+\subsubsection{CrossEntropyLoss}
+\[
+L=-\log\bigl(\mathrm{softmax}(\mathrm{logits})[\mathrm{target}]\bigr)
+\]
+\[
+\text{input = logits,\qquad target = class index}
+\]
+
+\subsubsection{Backprop}
+\[
+\text{路径导数相乘，多路径相加}
+\]
+
+\subsubsection{Conv output}
+\[
+\left\lfloor
+\frac{L+2P-D(K-1)-1}{S}+1
+\right\rfloor
+\]
+
+\subsubsection{Conv2d params}
+\[
+C_{\mathrm{out}}C_{\mathrm{in}}K_hK_w+C_{\mathrm{out}}
+\]
+
+\subsubsection{Transposed conv output}
+\[
+(L_{\mathrm{in}}-1)S-2P+D(K-1)+\mathrm{output\_padding}+1
+\]
+
+\subsubsection{Pooling}
+\[
+\text{avg: 梯度平均分}\qquad
+\text{max: 梯度给 argmax}
+\]
+
+\subsubsection{RNN}
+\[
+\text{展开 }h_t,\ \text{反复出现 }E^k
+\]
+
+\subsubsection{Attention}
+\[
+QK^\top/\sqrt d \rightarrow \mathrm{row\ softmax} \rightarrow V
+\]
+
+\subsubsection{Online softmax}
+\[
+\text{新 max 出现时，旧 }Z\text{ 乘 }\exp(\mathrm{old\_max}-\mathrm{new\_max})
+\]
+
+\subsubsection{ELBO}
+\[
+\log p(x)\ge \mathbb E_q[\log p(x\mid z)]-\mathrm{KL}(q(z\mid x)\|p(z))
+\]
+
+\subsubsection{DDIM}
+\[
+\sigma=0 \rightarrow \text{deterministic}
+\]
+\[
+\hat x_0=
+\frac{x_t-\sqrt{1-\bar\alpha_t}\,\epsilon_\theta}{\sqrt{\bar\alpha_t}}
+\]
